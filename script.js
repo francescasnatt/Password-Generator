@@ -89,33 +89,59 @@ var upperCasedCharacters = [
 ];
 
 // Function to prompt user for password options - responsible for taking input of user
-function getPasswordOptions() {
-  let passwordLength = prompt("How many characters would you like your password to contain?")
-}
+  function getPasswordOptions() {
+    let characterArray = [];
+    
+    let includeSpecial = confirm("Click ok to confirm including special characters.");
+    characterArray = characterArray.concat(includeSpecial); //use objects instead?
+    let includeNumeric = confirm("Click ok to confirm including numeric characters.");
+    characterArray = characterArray.concat(includeNumeric);
+    let includeLowercase = confirm("Click ok to confirm including lowercase characters.");
+    characterArray = characterArray.concat(includeLowercase);
+    let includeUppercase = confirm("Click ok to confirm including uppercase characters.");
+    characterArray = characterArray.concat(includeUppercase);
+  
+    if (characterArray.length===0){
+    alert("You must choose at least one character type.");
+  }
+  return characterArray;
+  }
+
 
 // Function for getting a random element from an array
-function getRandom(arr) {
-
-}
+  function getRandom(characterArray) {
+    const randomCharacter = Math.floor(Math.random() * characterArray.length);
+    return characterArray[randomCharacter];
+  }
 
 // Function to generate password with user input
-function generatePassword() {
-
-}
+  function generatePassword() {
+    let passwordLength = prompt("How many characters would you like your password to contain?");
+      if (passwordLength < 10 || passwordLength > 64){
+        alert("Error: password must be between 10 and 64 characters.")
+        return;
+      }
+    var characterArray = getPasswordOptions();
+    // for (var i=0; i<passwordLength; i++){
+    // getRandom(characterArray);
+    // }
+    return 5
+  }
+  //if 1st element of array is true - what does that mean? same for each element
 
 // Get references to the #generate element
-var generateBtn = document.querySelector('#generate');
+  var generateBtn = document.querySelector('#generate');
 
 // Write password to the #password input
-function writePassword() {
-  var password = generatePassword();
-  var passwordText = document.querySelector('#password');
+  function writePassword() {
+    var password = generatePassword();
+    var passwordText = document.querySelector('#password');
 
-  passwordText.value = password;
-}
+    passwordText.value = password;
+  }
 
 // Add event listener to generate button
-generateBtn.addEventListener('click', writePassword);
+  generateBtn.addEventListener('click', writePassword);
 
 
 
@@ -128,3 +154,4 @@ generateBtn.addEventListener('click', writePassword);
 // click ok to confirm including numeric characters
 // click ok to confirm including lowercase characters
 // click ok to confirm including uppercase characters
+// let options = getPasswordOptions();
