@@ -93,13 +93,13 @@ var upperCasedCharacters = [
     let characterArray = [];
     
     let includeSpecial = confirm("Click ok to confirm including special characters.");
-    characterArray = characterArray.concat(includeSpecial); //use objects instead?
+    characterArray = characterArray.concat(specialCharacters); //use objects instead?
     let includeNumeric = confirm("Click ok to confirm including numeric characters.");
-    characterArray = characterArray.concat(includeNumeric);
+    characterArray = characterArray.concat(numericCharacters);
     let includeLowercase = confirm("Click ok to confirm including lowercase characters.");
-    characterArray = characterArray.concat(includeLowercase);
+    characterArray = characterArray.concat(lowerCasedCharacters);
     let includeUppercase = confirm("Click ok to confirm including uppercase characters.");
-    characterArray = characterArray.concat(includeUppercase);
+    characterArray = characterArray.concat(upperCasedCharacters);
   
     if (characterArray.length===0){
     alert("You must choose at least one character type.");
@@ -107,10 +107,9 @@ var upperCasedCharacters = [
   return characterArray;
   }
 
-
 // Function for getting a random element from an array
   function getRandom(characterArray) {
-    const randomCharacter = Math.floor(Math.random() * characterArray.length);
+    let randomCharacter = Math.floor(Math.random() * characterArray.length);
     return characterArray[randomCharacter];
   }
 
@@ -122,10 +121,11 @@ var upperCasedCharacters = [
         return;
       }
     var characterArray = getPasswordOptions();
-    // for (var i=0; i<passwordLength; i++){
-    // getRandom(characterArray);
-    // }
-    return 5
+    for (var i=0; i<passwordLength; i++){
+    getRandom(characterArray);
+    var passwordOutput = passwordOutput.concat(randomCharacter);
+    }
+    return passwordOutput;
   }
   //if 1st element of array is true - what does that mean? same for each element
 
