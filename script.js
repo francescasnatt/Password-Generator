@@ -90,28 +90,44 @@ var upperCasedCharacters = [
 
 // Function to prompt user for password options - responsible for taking input of user
   function getPasswordOptions() {
-    let characterArray = [];
+    var characterArray = [];
     
     let includeSpecial = confirm("Click ok to confirm including special characters.");
+    if (includeSpecial == true){
     characterArray = characterArray.concat(specialCharacters); //use objects instead?
+    };
     let includeNumeric = confirm("Click ok to confirm including numeric characters.");
+    if (includeNumeric == true){
     characterArray = characterArray.concat(numericCharacters);
+    };
     let includeLowercase = confirm("Click ok to confirm including lowercase characters.");
+    if (includeLowercase == true){
     characterArray = characterArray.concat(lowerCasedCharacters);
+    };
     let includeUppercase = confirm("Click ok to confirm including uppercase characters.");
+    if (includeUppercase == true){
     characterArray = characterArray.concat(upperCasedCharacters);
-  
+    };
+
     if (characterArray.length===0){
-    alert("You must choose at least one character type.");
-  }
-  return characterArray;
+    alert("You must choose at least one character type. Press button to retry.");
+    }
+    return characterArray;
+    console.log(characterArray); //is this working?
   }
 
+  // getPasswordOptions();
+
 // Function for getting a random element from an array
-  function getRandom(characterArray) {
-    let randomCharacter = Math.floor(Math.random() * characterArray.length);
-    return characterArray[randomCharacter];
+  function getRandom() {
+    let characterArray = getPasswordOptions();
+    let randomIndexNo = Math.floor(Math.random() * characterArray.length);
+    randomCharacter = characterArray[randomIndexNo];
+    return randomCharacter;
+    // console.log(randomCharacter);
   }
+
+  // getRandom();
 
 // Function to generate password with user input
   function generatePassword() {
@@ -121,13 +137,13 @@ var upperCasedCharacters = [
         return;
       }
     var characterArray = getPasswordOptions();
+    var randomCharacter = getRandom();
     for (var i=0; i<passwordLength; i++){
-    getRandom(characterArray);
+    getRandom();
     var passwordOutput = passwordOutput.concat(randomCharacter);
     }
     return passwordOutput;
   }
-  //if 1st element of array is true - what does that mean? same for each element
 
 // Get references to the #generate element
   var generateBtn = document.querySelector('#generate');
