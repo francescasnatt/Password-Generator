@@ -94,7 +94,7 @@ var characterArray = [];
   function getPasswordOptions() {
     let includeSpecial = confirm("Click ok to confirm including special characters.");
     if (includeSpecial == true){
-    characterArray = characterArray.concat(specialCharacters);
+    characterArray = characterArray.concat(specialCharacters); //use objects instead?
     };
     let includeNumeric = confirm("Click ok to confirm including numeric characters.");
     if (includeNumeric == true){
@@ -123,7 +123,6 @@ var characterArray = [];
     return randomCharacter;
   }
 
-
 // Function to generate password with user input
   function generatePassword() {
     let passwordLength = prompt("How many characters would you like your password to contain?");
@@ -131,6 +130,7 @@ var characterArray = [];
         alert("Error: password must be between 10 and 64 characters.")
         return;
       }
+    var characterArray = getPasswordOptions();
     var passwordOutput = "";
     for (var i=0; i<passwordLength; i++){
       var randomCharacter = getRandom();
@@ -152,3 +152,16 @@ var characterArray = [];
 
 // Add event listener to generate button
   generateBtn.addEventListener('click', writePassword);
+
+
+
+
+
+
+// PROMPTS
+// how many characters would i like my password to contain?
+// click ok to confirm including special characters
+// click ok to confirm including numeric characters
+// click ok to confirm including lowercase characters
+// click ok to confirm including uppercase characters
+// let options = getPasswordOptions();
