@@ -88,13 +88,13 @@ var upperCasedCharacters = [
   'Z'
 ];
 
+var characterArray = [];
+
 // Function to prompt user for password options - responsible for taking input of user
   function getPasswordOptions() {
-    var characterArray = [];
-    
     let includeSpecial = confirm("Click ok to confirm including special characters.");
     if (includeSpecial == true){
-    characterArray = characterArray.concat(specialCharacters); //use objects instead?
+    characterArray = characterArray.concat(specialCharacters);
     };
     let includeNumeric = confirm("Click ok to confirm including numeric characters.");
     if (includeNumeric == true){
@@ -113,21 +113,16 @@ var upperCasedCharacters = [
     alert("You must choose at least one character type. Press button to retry.");
     }
     return characterArray;
-    console.log(characterArray); //is this working?
   }
 
-  // getPasswordOptions();
 
 // Function for getting a random element from an array
   function getRandom() {
-    let characterArray = getPasswordOptions();
     let randomIndexNo = Math.floor(Math.random() * characterArray.length);
     randomCharacter = characterArray[randomIndexNo];
     return randomCharacter;
-    // console.log(randomCharacter);
   }
 
-  // getRandom();
 
 // Function to generate password with user input
   function generatePassword() {
@@ -136,11 +131,10 @@ var upperCasedCharacters = [
         alert("Error: password must be between 10 and 64 characters.")
         return;
       }
-    var characterArray = getPasswordOptions();
-    var randomCharacter = getRandom();
+    var passwordOutput = "";
     for (var i=0; i<passwordLength; i++){
-    getRandom();
-    var passwordOutput = passwordOutput.concat(randomCharacter);
+      var randomCharacter = getRandom();
+      passwordOutput = passwordOutput.concat(randomCharacter);
     }
     return passwordOutput;
   }
@@ -158,16 +152,3 @@ var upperCasedCharacters = [
 
 // Add event listener to generate button
   generateBtn.addEventListener('click', writePassword);
-
-
-
-
-
-
-// PROMPTS
-// how many characters would i like my password to contain?
-// click ok to confirm including special characters
-// click ok to confirm including numeric characters
-// click ok to confirm including lowercase characters
-// click ok to confirm including uppercase characters
-// let options = getPasswordOptions();
